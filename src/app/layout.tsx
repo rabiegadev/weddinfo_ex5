@@ -25,7 +25,7 @@ const allura = Allura({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://weddinfo-ex5.vercel.app"),
   title: `${weddingConfig.couple.displayNames} — Zaproszenie ślubne`,
   description: `Zapraszamy na ślub ${weddingConfig.couple.displayNames}. ${weddingConfig.weddingDate}.`,
   openGraph: {
