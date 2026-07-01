@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf7f2;
+  --color-cream-alt: #f8f5ef;
+  --color-olive: #66704a;
+  --color-olive-dark: #55603c;
+  --color-gold: #b89a63;
+  --color-heading: #3d3328;
+  --color-body: #5f554a;
+  --color-border: rgba(182, 164, 122, 0.2);
+
+  --font-heading: var(--font-family-heading), "Cormorant Garamond", serif;
+  --font-body: var(--font-family-body), "Lato", sans-serif;
+  --font-script: var(--font-family-script), "Allura", cursive;
+
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.08);
+  --radius-card: 24px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-cream text-body;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-heading;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply px-5 py-16 md:px-8 lg:px-12 lg:py-[120px];
+  }
+
+  .container-main {
+    @apply mx-auto w-full max-w-[1400px];
+  }
+
+  .glass-nav {
+    background: rgba(250, 247, 242, 0.75);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
+}
