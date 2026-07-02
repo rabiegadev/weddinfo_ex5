@@ -15,6 +15,40 @@ const linkVariants = {
   }),
 };
 
+const navLinkClass =
+  "text-xs font-medium tracking-[0.15em] text-body uppercase transition-colors duration-300 hover:text-olive";
+
+const navDisabledClass =
+  "cursor-default text-xs font-medium tracking-[0.15em] text-body/40 uppercase";
+
+function NavItem({
+  item,
+  className,
+  onNavigate,
+}: {
+  item: (typeof weddingConfig.navigation)[number];
+  className?: string;
+  onNavigate?: () => void;
+}) {
+  if (item.disabled) {
+    return (
+      <button type="button" disabled className={className ?? navDisabledClass}>
+        {item.label}
+      </button>
+    );
+  }
+
+  return (
+    <Link
+      href={item.href ?? "#"}
+      className={className ?? navLinkClass}
+      onClick={onNavigate}
+    >
+      {item.label}
+    </Link>
+  );
+}
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -80,13 +114,7 @@ export function Header() {
 
           <nav className="hidden items-center gap-8 lg:flex">
             {weddingConfig.navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-xs font-medium tracking-[0.15em] text-body uppercase transition-colors duration-300 hover:text-olive"
-              >
-                {item.label}
-              </Link>
+              <NavItem key={item.label} item={item} />
             ))}
           </nav>
 
@@ -151,20 +179,22 @@ export function Header() {
               <div className="flex flex-col gap-1 p-3">
                 {weddingConfig.navigation.map((item, i) => (
                   <motion.div
-                    key={item.href}
+                    key={item.label}
                     custom={i}
                     variants={linkVariants}
                     initial="closed"
                     animate="open"
                     exit="closed"
                   >
-                    <Link
-                      href={item.href}
-                      className="block rounded-2xl px-4 py-3 font-heading text-xl text-heading transition-colors duration-200 hover:bg-olive/5"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
+                    <NavItem
+                      item={item}
+                      className={
+                        item.disabled
+                          ? "block w-full cursor-default rounded-2xl px-4 py-3 text-left font-heading text-xl text-heading/40"
+                          : "block rounded-2xl px-4 py-3 font-heading text-xl text-heading transition-colors duration-200 hover:bg-olive/5"
+                      }
+                      onNavigate={() => setMenuOpen(false)}
+                    />
                   </motion.div>
                 ))}
 

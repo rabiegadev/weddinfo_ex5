@@ -10,20 +10,20 @@ import { weddingConfig } from "@/config/wedding";
 export function Locations() {
   return (
     <SectionWrapper id="lokalizacje" className="bg-cream-alt">
-      <SectionTitle title="Lokalizacje" subtitle="Gdzie nas znaleźć" />
+      <SectionTitle title="Lokalizacje" subtitle="Czyli gdzie będziemy się bawić" />
 
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         {weddingConfig.locations.map((location) => (
           <article
             key={location.id}
             className="overflow-hidden rounded-[24px] bg-white shadow-card transition-transform duration-300 hover:-translate-y-1.5"
           >
-            <div className="relative h-56 md:h-64">
+            <div className="relative h-64 overflow-hidden md:h-80">
               <Image
-                src="/foto.jpg"
+                src={location.image}
                 alt={`Zdjęcie — ${location.title}`}
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 100vw, 600px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -45,17 +45,6 @@ export function Locations() {
           </article>
         ))}
       </div>
-
-      <div className="mt-10 overflow-hidden rounded-[24px] border border-border shadow-card">
-        <iframe
-          src={weddingConfig.locations[0]?.mapEmbedUrl}
-          title="Mapa lokalizacji"
-          className="h-72 w-full md:h-96"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
-      </div>
     </SectionWrapper>
   );
 }
@@ -74,7 +63,11 @@ export function WeddingInfo() {
             }`}
           >
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-cream">
-              <WeddingIcon size={28} alt={`Ikona — ${item.title}`} />
+              <WeddingIcon
+                src={item.icon}
+                size={28}
+                alt={`Ikona — ${item.title}`}
+              />
             </div>
             <div>
               <h3 className="text-lg font-medium uppercase tracking-wider">

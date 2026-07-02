@@ -14,12 +14,11 @@ export function Rsvp() {
   };
 
   return (
-    <SectionWrapper id="rsvp">
+    <SectionWrapper id="rsvp" className="bg-cream-alt">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <SectionTitle
             title={weddingConfig.rsvp.title}
-            subtitle={weddingConfig.rsvp.subtitle}
             centered={false}
           />
           <p className="text-base leading-relaxed text-body">

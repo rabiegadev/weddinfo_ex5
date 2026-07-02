@@ -1,11 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import { WeddingIcon } from "@/components/ui/WeddingIcon";
 import { SectionWrapper, SectionTitle } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
 import { weddingConfig } from "@/config/wedding";
 
 export function Schedule() {
@@ -27,7 +24,11 @@ export function Schedule() {
                 className="relative flex flex-col items-center text-center"
               >
                 <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-cream shadow-sm">
-                  <WeddingIcon size={32} alt={`Ikona — ${item.title}`} />
+                  <WeddingIcon
+                    src={item.icon}
+                    size={32}
+                    alt={`Ikona — ${item.title}`}
+                  />
                 </div>
                 <p className="mt-4 font-heading text-lg font-semibold text-olive">
                   {item.time}
@@ -55,7 +56,11 @@ export function Schedule() {
               className="relative pb-10"
             >
               <div className="absolute -left-5 flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 bg-cream">
-                <WeddingIcon size={22} alt={`Ikona — ${item.title}`} />
+                <WeddingIcon
+                  src={item.icon}
+                  size={22}
+                  alt={`Ikona — ${item.title}`}
+                />
               </div>
               <p className="font-heading text-lg font-semibold text-olive">
                 {item.time}
@@ -67,30 +72,6 @@ export function Schedule() {
             </motion.div>
           ))}
         </div>
-      </div>
-
-      <div className="mt-16 flex flex-col items-center gap-8 md:flex-row md:justify-between">
-        <div className="flex gap-3">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="relative h-24 w-20 overflow-hidden rounded-2xl shadow-card md:h-28 md:w-24"
-            >
-              <Image
-                src="/foto.jpg"
-                alt={`Podgląd galerii ${i + 1}`}
-                fill
-                className="object-cover"
-                sizes="100px"
-              />
-            </div>
-          ))}
-        </div>
-        {weddingConfig.features.showGalleryButton && (
-          <Link href="#galeria">
-            <Button variant="outline">Przejdź do galerii</Button>
-          </Link>
-        )}
       </div>
     </SectionWrapper>
   );
